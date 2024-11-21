@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const createUserDirectories = require('./utils/createDirectories');
-const cleanupTempFiles = require('./utils/cleanupTempFiles');
+const createUserDirectories = require("./utils/createDirectories");
+const cleanupTempFiles = require("./utils/cleanupTempFiles");
 
 require("dotenv").config();
 
@@ -9,7 +9,7 @@ const app = express();
 const apiRoutes = require("./routes/api");
 
 const corsOptions = {
-	origin: "http://localhost:3000",
+	origin: "https://moksha-frontend-kp2h8a4i0-sentisies-projects.vercel.app",
 	credentials: true,
 };
 
@@ -25,9 +25,15 @@ app.get("/", (req, res) => {
 });
 
 app.use((req, res, next) => {
-	res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+	res.header(
+		"Access-Control-Allow-Origin",
+		"https://moksha-frontend-kp2h8a4i0-sentisies-projects.vercel.app"
+	);
 	res.header("Access-Control-Allow-Credentials", "true");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept"
+	);
 	next();
 });
 
