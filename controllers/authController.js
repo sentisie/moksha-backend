@@ -260,21 +260,21 @@ const getFullProfile = async (req, res) => {
 		`, [userId]);
 
 		const reviewResult = await pool.query(`
-			SELECT 
+			SELECT DISTINCT ON (r.id)
 				r.id,
 				r.text,
 				r.rating,
 				r.media_urls,
 				r.created_at,
 				r.product_id,
-				p.title as product_title,
-				o.id as order_id
+				p.title AS product_title,
+				o.id AS order_id
 			FROM reviews r
 			JOIN products p ON r.product_id = p.id
 			JOIN order_items oi ON r.product_id = oi.product_id
 			JOIN orders o ON oi.order_id = o.id
 			WHERE r.user_id = $1
-			ORDER BY r.created_at DESC
+			ORDER BY r.id, r.created_at DESC
 		`, [userId]);
 
 		const pendingReviewsResult = await pool.query(`
