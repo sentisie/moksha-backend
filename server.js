@@ -9,7 +9,7 @@ const app = express();
 const apiRoutes = require("./routes/api");
 
 const corsOptions = {
-	origin: "https:/moksha-front.vercel.app",
+	origin: "https://moksha-front.vercel.app/",
 	credentials: true,
 };
 
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 app.use((req, res, next) => {
 	res.header(
 		"Access-Control-Allow-Origin",
-		"https://moksha-front.vercel.app"
+		"https://moksha-front.vercel.app/"
 	);
 	res.header("Access-Control-Allow-Credentials", "true");
 	res.header(
